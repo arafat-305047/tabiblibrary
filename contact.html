@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | NSTU Central Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width .3s;
+        }
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        
+        .map-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .input-error {
+            border-color: #ef4444;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .success-message {
+            background-color: #10b981;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="nstu-logo.jpg" alt="NSTU Logo" class="h-10 w-auto mr-2">
+                    <span class="text-xl font-bold text-white-800">NSTU Central Library</span>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-blue-200 transition">Home</a>
+                    <a href="about.html" class="hover:text-blue-200 transition">About</a>
+                    <a href="services.html" class="hover:text-blue-200 transition">Services</a>
+                    <a href="catalog.html" class="hover:text-blue-200 transition">Catalog</a>
+                    <a href="membership.html" class="hover:text-blue-200 transition">Membership</a>
+                    <a href="contact.html" class="text-blue-200 font-medium">Contact</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+                <a href="#" class="block py-2 hover:bg-blue-800 px-2 rounded">Home</a>
+                <a href="about" class="block py-2 bg-blue-800 px-2 rounded">About</a>
+                <a href="services" class="block py-2 hover:bg-blue-800 px-2 rounded">Services</a>
+                <a href="catalog" class="block py-2 hover:bg-blue-800 px-2 rounded">Catalog</a>
+                <a href="membership" class="block py-2 hover:bg-blue-800 px-2 rounded">Membership</a>
+                <a href="contact" class="block py-2 hover:bg-blue-800 px-2 rounded">Contact</a>
+            </div>
+        </div>
+    </nav>
+ <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">Contact Us</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto animate-fade-in delay-100">
+                We're here to help. Reach out to us anytime.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        
+        
+        <!-- Success Message -->
+        <div id="success-message" class="success-message text-center">
+            <i class="fas fa-check-circle mr-2"></i> Your message has been sent successfully!
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Contact Form -->
+            <div class="w-full lg:w-1/2 bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold text-blue-800 mb-6">Send us a message</h2>
+                
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                        <p id="name-error" class="error-message"></p>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-gray-700 mb-2">Email Address <span class="text-red-500">*</span></label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                        <p id="email-error" class="error-message"></p>
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-gray-700 mb-2">Subject <span class="text-red-500">*</span></label>
+                        <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                        <p id="subject-error" class="error-message"></p>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-gray-700 mb-2">Message <span class="text-red-500">*</span></label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"></textarea>
+                        <p id="message-error" class="error-message"></p>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 px-6 rounded-lg font-medium transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-paper-plane mr-2"></i> Send Message
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="w-full lg:w-1/2 space-y-8">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-semibold text-blue-800 mb-6">Contact Information</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="text-blue-700 mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-800">Address</h3>
+                                <p class="text-gray-600">NSTU Central Library, Sonapur, Noakhali</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-blue-700 mr-4 mt-1">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-800">Phone</h3>
+                                <p class="text-gray-600">+880 1234 567890</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-blue-700 mr-4 mt-1">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-800">Email</h3>
+                                <p class="text-gray-600">library@nstu.edu.bd</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-blue-700 mr-4 mt-1">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-800">Office Hours</h3>
+                                <p class="text-gray-600">Sunday - Thursday: 8:00 AM - 8:00 PM</p>
+                                <p class="text-gray-600">Friday: 8:00 AM - 5:00 PM</p>
+                                <p class="text-gray-600">Saturday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Map -->
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-4">Our Location</h3>
+                    <div class="map-container">
+                        <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.29905798059!2d91.09766357406686!3d22.791380024918556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3754af76e68ef035%3A0x9ab1b84b76b86236!2sCentral%20Library%20-%20NSTU!5e0!3m2!1sen!2sbd!4v1753032034915!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">NSTU Central Library</h3>
+                    <p class="mb-4">Noakhali Science and Technology University</p>
+                    <p class="mb-4"><i class="fas fa-map-marker-alt mr-2"></i> Sonapur, Noakhali-3814, Bangladesh</p>
+                    <p class="mb-4"><i class="fas fa-phone-alt mr-2"></i> +880 1234 567890</p>
+                    <p class="mb-4"><i class="fas fa-envelope mr-2"></i> library@nstu.edu.bd</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Home</a></li>
+                        <li><a href="about.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> About</a></li>
+                        <li><a href="services.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Services</a></li>
+                        <li><a href="catalog.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Catalog</a></li>
+                        <li><a href="membership.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Membership</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-blue-400 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-red-600 hover:bg-red-700 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="bg-purple-600 hover:bg-purple-700 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <h4 class="font-bold mb-2">Opening Hours</h4>
+                    <p class="mb-1">Sunday-Thursday: 8:00 AM - 10:00 PM</p>
+                    <p>Friday-Saturday: 10:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>&copy; 2023 NSTU Central Library. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Form validation
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('input-error'));
+            
+            // Validate form
+            let isValid = true;
+            
+            const name = document.getElementById('name');
+            if (!name.value.trim()) {
+                document.getElementById('name-error').textContent = 'Name is required';
+                name.classList.add('input-error');
+                isValid = false;
+            }
+            
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim()) {
+                document.getElementById('email-error').textContent = 'Email is required';
+                email.classList.add('input-error');
+                isValid = false;
+            } else if (!emailRegex.test(email.value)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email';
+                email.classList.add('input-error');
+                isValid = false;
+            }
+            
+            const subject = document.getElementById('subject');
+            if (!subject.value.trim()) {
+                document.getElementById('subject-error').textContent = 'Subject is required';
+                subject.classList.add('input-error');
+                isValid = false;
+            }
+            
+            const message = document.getElementById('message');
+            if (!message.value.trim()) {
+                document.getElementById('message-error').textContent = 'Message is required';
+                message.classList.add('input-error');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // In a real application, you would send the form data to a server here
+                // For this example, we'll just show a success message
+                successMessage.style.display = 'block';
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>

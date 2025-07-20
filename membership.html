@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership | NSTU Central Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width .3s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+     <!-- Navigation Bar -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="nstu-logo.jpg" alt="NSTU Logo" class="h-10 w-auto mr-2">
+                    <span class="text-xl font-bold text-white-800">NSTU Central Library</span>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-blue-200 transition">Home</a>
+                    <a href="about.html" class="hover:text-blue-200 transition">About</a>
+                    <a href="services.html" class="hover:text-blue-200 transition">Services</a>
+                    <a href="catalog.html" class="hover:text-blue-200 transition">Catalog</a>
+                    <a href="membership.html" class="text-blue-200 font-medium">Membership</a>
+                    <a href="contact.html" class="hover:text-blue-200 transition">Contact</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+                <a href="#" class="block py-2 hover:bg-blue-800 px-2 rounded">Home</a>
+                <a href="#about" class="block py-2 bg-blue-800 px-2 rounded">About</a>
+                <a href="#services" class="block py-2 hover:bg-blue-800 px-2 rounded">Services</a>
+                <a href="#catalog" class="block py-2 hover:bg-blue-800 px-2 rounded">Catalog</a>
+                <a href="#membership" class="block py-2 hover:bg-blue-800 px-2 rounded">Membership</a>
+                <a href="#contact" class="block py-2 hover:bg-blue-800 px-2 rounded">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-12 px-4">
+        <!-- Hero Section -->
+        <section class="max-w-6xl mx-auto text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-800 mb-6">Library Membership</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Join our community of learners and researchers. As a member of NSTU Central Library, you'll gain access to our extensive collection of books, journals, digital resources, and exclusive services to support your academic and professional growth.
+            </p>
+        </section>
+
+        <!-- Membership Types -->
+        <section class="max-w-6xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Membership Types</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 membership-cards">
+                <!-- Student Membership -->
+                <div class="bg-white rounded-lg shadow-md p-6 membership-card transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-user-graduate text-5xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Student Membership</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>For all enrolled NSTU students</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Free of charge</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Borrow up to 5 books for 14 days</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Access to digital resources</span>
+                        </li>
+                    </ul>
+                    <div class="text-sm text-gray-500">
+                        <p><strong>Requires:</strong> Valid student ID card</p>
+                    </div>
+                </div>
+                
+                <!-- Faculty Membership -->
+                <div class="bg-white rounded-lg shadow-md p-6 membership-card transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-chalkboard-teacher text-5xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Faculty Membership</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>For NSTU faculty members</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Free of charge</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Borrow up to 10 books for 30 days</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Priority access to new arrivals</span>
+                        </li>
+                    </ul>
+                    <div class="text-sm text-gray-500">
+                        <p><strong>Requires:</strong> Faculty ID and department approval</p>
+                    </div>
+                </div>
+                
+                <!-- External Membership -->
+                <div class="bg-white rounded-lg shadow-md p-6 membership-card transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-user-tie text-5xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">External Membership</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>For alumni and researchers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Annual fee: 1000 BDT</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Borrow up to 3 books for 14 days</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Reading room access</span>
+                        </li>
+                    </ul>
+                    <div class="text-sm text-gray-500">
+                        <p><strong>Requires:</strong> National ID and reference letter</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="max-w-4xl mx-auto bg-blue-50 rounded-xl p-8 md:p-12 text-center mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-800 mb-4">Ready to Join Our Library Community?</h2>
+            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                Apply for membership today and unlock a world of knowledge and resources to support your academic and professional journey.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://forms.gle/kDBUuzwpU2aymt4E8" class="apply-btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 inline-block">
+                    Apply for Membership Online
+                </a>
+                <a href="https://forms.gle/kDBUuzwpU2aymt4E8" class="bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition duration-300 inline-block">
+                    Download Membership Form
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-8">Frequently Asked Questions</h2>
+            
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">How long does the membership last?</h3>
+                    <p class="text-gray-600">
+                        Student and faculty memberships are valid as long as you're affiliated with NSTU. External memberships are valid for one year from the date of registration and can be renewed.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Can I renew my books online?</h3>
+                    <p class="text-gray-600">
+                        Yes, you can renew your books online through our library portal, provided there are no holds on the items. Each book can be renewed up to 2 times.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">What are the library opening hours?</h3>
+                    <p class="text-gray-600">
+                        The library is open Sunday to Thursday from 8:30 AM to 9:00 PM, and Saturday from 10:00 AM to 6:00 PM. We're closed on Fridays and public holidays.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Is there a late fee for overdue books?</h3>
+                    <p class="text-gray-600">
+                        Yes, there's a late fee of 10 BDT per book per day for students and faculty, and 20 BDT per book per day for external members.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Info Footer -->
+    <footer class="bg-gray-800 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">NSTU Central Library</h3>
+                    <p class="mb-4">Noakhali Science and Technology University</p>
+                    <p class="mb-4"><i class="fas fa-map-marker-alt mr-2"></i> Sonapur, Noakhali-3814, Bangladesh</p>
+                    <p class="mb-4"><i class="fas fa-phone-alt mr-2"></i> +880 1234 567890</p>
+                    <p class="mb-4"><i class="fas fa-envelope mr-2"></i> library@nstu.edu.bd</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Home</a></li>
+                        <li><a href="about.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> About</a></li>
+                        <li><a href="services.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Services</a></li>
+                        <li><a href="catalog.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Catalog</a></li>
+                        <li><a href="membership.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Membership</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-400 transition-all"><i class="fas fa-chevron-right mr-2"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-blue-400 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-red-600 hover:bg-red-700 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="bg-purple-600 hover:bg-purple-700 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <h4 class="font-bold mb-2">Opening Hours</h4>
+                    <p class="mb-1">Sunday-Thursday: 8:00 AM - 10:00 PM</p>
+                    <p>Friday-Saturday: 10:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>&copy; 2023 NSTU Central Library. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for mobile menu toggle (would be expanded in a real implementation)
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden button');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'hidden bg-white shadow-lg rounded-lg mt-2 py-2 absolute right-4 w-48';
+            mobileMenu.innerHTML = `
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">Home</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">About</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">Services</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">Catalog</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">Membership</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">Contact</a>
+            `;
+            
+            mobileMenuButton.parentNode.appendChild(mobileMenu);
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
